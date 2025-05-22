@@ -55,3 +55,6 @@ def filter_expenses(request, name, period):
 def home(request):
     users = Expense.objects.values_list('name', flat=True).distinct()
     return render(request, 'tracker/home.html', {'users': users})
+
+def welcome(request):
+    return render(request,'welcome/home.html')
