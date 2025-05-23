@@ -65,11 +65,16 @@
 <body>
     <div class="container">
         <h1>Yangi xarajat qo'shish</h1>
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Qo'shish</button>
-        </form>
+        <form onsubmit="showSuccessAlert(); return false;">
+    {{ form.as_p }}
+    <button type="submit">Qo'shish</button>
+</form>
+
+<script>
+    function showSuccessAlert() {
+        alert("✅ Xarajat muvaffaqiyatli qo‘shildi!");
+    }
+</script>
     </div>
 </body>
 </html>
