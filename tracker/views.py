@@ -1,13 +1,24 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .forms import ExpenseForm
 from .models import Expense
 from django.utils import timezone
 from datetime import timedelta
 
+# def add_expense(request):
+#     form = ExpenseForm(request.POST or None)
+#     if form.is_valid():
+#         form.save()
+#     # return redirect('users')
+#     return render(request, 'tracker/add_expense.html', {'form': form})
+
 def add_expense(request):
-    form = ExpenseForm(request.POST or None)
-    if form.is_valid():
-        form.save()
+    if request.method == 'POST':
+        form = ExpenseForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('users')  # bu yerda 'users' — URL pattern nomi
+    else:
+        form = ExpenseForm()
     return render(request, 'tracker/add_expense.html', {'form': form})
 
 def view_expenses(request, name):
@@ -58,3 +69,5 @@ def home(request):
 
 def welcome(request):
     return render(request,'welcome/home.html')
+
+

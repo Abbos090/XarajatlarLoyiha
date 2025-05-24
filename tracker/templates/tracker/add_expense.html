@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <title>Yangi xarajat qo'shish</title>
+    <title>Xarajat qo'shish</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -34,10 +34,7 @@
         }
 
         input[type="text"],
-        input[type="number"],
-        input[type="date"],
-        select,
-        textarea {
+        input[type="number"] {
             width: 100%;
             padding: 10px 12px;
             border: 1px solid #cbd5e1;
@@ -65,16 +62,11 @@
 <body>
     <div class="container">
         <h1>Yangi xarajat qo'shish</h1>
-        <form onsubmit="showSuccessAlert(); return false;">
-    {{ form.as_p }}
-    <button type="submit">Qo'shish</button>
-</form>
-
-<script>
-    function showSuccessAlert() {
-        alert("✅ Xarajat muvaffaqiyatli qo‘shildi!");
-    }
-</script>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Qo'shish</button>
+        </form>
     </div>
 </body>
 </html>
